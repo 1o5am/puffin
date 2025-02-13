@@ -1,5 +1,4 @@
-# Project Title
-Puffin: Your personal financial advisor to help you reach your goals and build wealth!
+# Puffin: Your personal financial advisor to help you reach your goals and build wealth!
 
 ## Overview
 
