@@ -204,7 +204,7 @@ export const Insights = ({ page, data }) => {
 
   return (
     <div className="insights-section">
-      <h2>AI-Powered Insights</h2>
+      <h2>Insights</h2>
       <div className="insights-grid">
         {page === 'dashboard' && renderDashboardInsights()}
         {page === 'transactions' && renderTransactionInsights()}
