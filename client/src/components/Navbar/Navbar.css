@@ -1,0 +1,91 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+.navbar .search-bar {
+  flex: 1;
+  max-width: 600px;
+  margin-right: 2rem;
+}
+.navbar .search-bar form {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+}
+.navbar .search-bar input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  min-width: 300px;
+}
+.navbar .search-bar input:focus {
+  outline: none;
+  border-color: #2196f3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+.navbar .search-bar input::-moz-placeholder {
+  color: #9ca3af;
+}
+.navbar .search-bar input::placeholder {
+  color: #9ca3af;
+}
+.navbar .search-bar button {
+  padding: 0.75rem 1.5rem;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.navbar .search-bar button:hover:not(:disabled) {
+  background-color: #1976d2;
+}
+.navbar .search-bar button:disabled {
+  background-color: #90caf9;
+  cursor: not-allowed;
+}
+.navbar .nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.navbar .nav-actions .profile-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: #1f2937;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+.navbar .nav-actions .profile-button:hover {
+  background: #374151;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+  .navbar .search-bar {
+    max-width: none;
+    margin-right: 1rem;
+  }
+  .navbar .search-bar input {
+    min-width: 0;
+  }
+  .navbar .search-bar button {
+    padding: 0.75rem;
+  }
+}/*# sourceMappingURL=Navbar.css.map */

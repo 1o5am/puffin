@@ -1,0 +1,130 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.modal .modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #2D3748;
+}
+.modal .modal-header .close-button {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #4A5568;
+  padding: 0.25rem;
+  line-height: 1;
+}
+.modal .modal-header .close-button:hover {
+  color: #2D3748;
+}
+.modal form .form-group {
+  margin-bottom: 1.5rem;
+}
+.modal form .form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #2D3748;
+  font-weight: 500;
+}
+.modal form .form-group input,
+.modal form .form-group select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  background-color: white;
+}
+.modal form .form-group input:focus,
+.modal form .form-group select:focus {
+  outline: none;
+  border-color: #00875A;
+  box-shadow: 0 0 0 2px rgba(0, 135, 90, 0.1);
+}
+.modal form .form-group input.error,
+.modal form .form-group select.error {
+  border-color: #E53E3E;
+  background-color: rgba(229, 62, 62, 0.02);
+}
+.modal form .form-group input::-moz-placeholder, .modal form .form-group select::-moz-placeholder {
+  color: rgba(74, 85, 104, 0.5);
+}
+.modal form .form-group input::placeholder,
+.modal form .form-group select::placeholder {
+  color: rgba(74, 85, 104, 0.5);
+}
+.modal form .form-group select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
+  padding-right: 2rem;
+}
+.modal form .form-group .error-message {
+  color: #E53E3E;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+.modal .modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+.modal .modal-footer button {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.modal .modal-footer button.cancel-button {
+  background: none;
+  border: 1px solid #E2E8F0;
+  color: #4A5568;
+}
+.modal .modal-footer button.cancel-button:hover {
+  background: #EDF2F7;
+  border-color: #c0cddf;
+}
+.modal .modal-footer button.save-button {
+  background: #00875A;
+  border: none;
+  color: white;
+}
+.modal .modal-footer button.save-button:hover {
+  background: #006e49;
+}
+.modal .modal-footer button.save-button:active {
+  transform: translateY(1px);
+}/*# sourceMappingURL=GoalModal.css.map */

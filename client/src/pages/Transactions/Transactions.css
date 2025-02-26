@@ -1,0 +1,425 @@
+.transactions {
+  padding: 2rem;
+}
+.transactions .transactions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.transactions .transactions-header h1 {
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: #2D3748;
+}
+.transactions .transactions-header .add-transaction {
+  padding: 0.5rem 1.5rem;
+  background: #00875A;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+.transactions .transactions-header .add-transaction:hover {
+  background: #008056;
+}
+.transactions .transactions-content {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.transactions .transactions-content .transactions-filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #E2E8F0;
+}
+.transactions .transactions-content .transactions-filters .search-container {
+  flex: 1;
+  max-width: 500px;
+}
+.transactions .transactions-content .transactions-filters .search-container .search-form {
+  display: flex;
+  gap: 0.5rem;
+}
+.transactions .transactions-content .transactions-filters .search-container .search-form input {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+}
+.transactions .transactions-content .transactions-filters .search-container .search-form input:focus {
+  outline: none;
+  border-color: #00875A;
+}
+.transactions .transactions-content .transactions-filters .search-container .search-form button {
+  padding: 0.5rem 1.5rem;
+  background: #00875A;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+.transactions .transactions-content .transactions-filters .search-container .search-form button:hover {
+  background: #008056;
+}
+.transactions .transactions-content .transactions-filters .filter-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+.transactions .transactions-content .transactions-filters .filter-buttons button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.375rem;
+  background: white;
+  color: #4A5568;
+  cursor: pointer;
+}
+.transactions .transactions-content .transactions-filters .filter-buttons button:hover {
+  border-color: #00875A;
+  color: #00875A;
+}
+.transactions .transactions-content .transactions-filters .filter-buttons button.active {
+  background: #00875A;
+  color: white;
+  border-color: #00875A;
+}
+.transactions .transactions-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.transactions .transactions-content table th {
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.875rem;
+  color: #4A5568;
+  border-bottom: 1px solid #E2E8F0;
+}
+.transactions .transactions-content table td {
+  padding: 1rem;
+  border-bottom: 1px solid #E2E8F0;
+}
+.transactions .transactions-content table td.amount {
+  font-weight: 500;
+}
+.transactions .transactions-content table td.amount.positive {
+  color: #38A169;
+}
+.transactions .transactions-content table td.amount.negative {
+  color: #E53E3E;
+}
+.transactions .transactions-content table td .category-tag {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background: #EDF2F7;
+  border-radius: 0.75rem;
+  font-size: 0.75rem;
+  color: #4A5568;
+}
+.transactions .transactions-content table tr:hover {
+  background: #EDF2F7;
+}
+.transactions .transactions-content .transactions-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  gap: 0.5rem;
+}
+.transactions .transactions-content .transactions-pagination button {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.375rem;
+  background: white;
+  color: #4A5568;
+  cursor: pointer;
+}
+.transactions .transactions-content .transactions-pagination button:hover:not(:disabled) {
+  border-color: #00875A;
+  color: #00875A;
+}
+.transactions .transactions-content .transactions-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.transactions .transactions-content .transactions-pagination button.active {
+  background: #00875A;
+  color: white;
+  border-color: #00875A;
+}
+.transactions .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.transactions .modal-overlay .modal {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.transactions .modal-overlay .modal h2 {
+  font-size: 1.5rem;
+  color: #2D3748;
+  margin-bottom: 1.5rem;
+}
+.transactions .modal-overlay .modal .form-group {
+  margin-bottom: 1rem;
+}
+.transactions .modal-overlay .modal .form-group label {
+  display: block;
+  font-size: 0.875rem;
+  color: #4A5568;
+  margin-bottom: 0.25rem;
+}
+.transactions .modal-overlay .modal .form-group input[type=text],
+.transactions .modal-overlay .modal .form-group input[type=number],
+.transactions .modal-overlay .modal .form-group input[type=date] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+}
+.transactions .modal-overlay .modal .form-group input[type=text]:focus,
+.transactions .modal-overlay .modal .form-group input[type=number]:focus,
+.transactions .modal-overlay .modal .form-group input[type=date]:focus {
+  outline: none;
+  border-color: #00875A;
+}
+.transactions .modal-overlay .modal .form-group input[type=text]::-moz-placeholder, .transactions .modal-overlay .modal .form-group input[type=number]::-moz-placeholder, .transactions .modal-overlay .modal .form-group input[type=date]::-moz-placeholder {
+  color: #718096;
+}
+.transactions .modal-overlay .modal .form-group input[type=text]::placeholder,
+.transactions .modal-overlay .modal .form-group input[type=number]::placeholder,
+.transactions .modal-overlay .modal .form-group input[type=date]::placeholder {
+  color: #718096;
+}
+.transactions .modal-overlay .modal .form-group .radio-group {
+  display: flex;
+  gap: 1rem;
+}
+.transactions .modal-overlay .modal .form-group .radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+}
+.transactions .modal-overlay .modal .form-group .radio-group label input[type=radio] {
+  cursor: pointer;
+}
+.transactions .modal-overlay .modal .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+.transactions .modal-overlay .modal .modal-actions button {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.transactions .modal-overlay .modal .modal-actions button[type=button] {
+  background: white;
+  border: 1px solid #E2E8F0;
+  color: #4A5568;
+}
+.transactions .modal-overlay .modal .modal-actions button[type=button]:hover {
+  border-color: #2D3748;
+  color: #2D3748;
+}
+.transactions .modal-overlay .modal .modal-actions button[type=submit] {
+  background: #00875A;
+  border: none;
+  color: white;
+}
+.transactions .modal-overlay .modal .modal-actions button[type=submit]:hover {
+  background: #008056;
+}
+.transactions .insights-section {
+  margin: 2rem 0;
+}
+.transactions .insights-section h2 {
+  font-size: 1.5rem;
+  color: #2D3748;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+}
+.transactions .insights-section h2:after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 4px;
+  background: #00875A;
+  border-radius: 0.125rem;
+}
+.transactions .insights-section .insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+.transactions .insights-section .insights-grid .insight-card {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.transactions .insights-section .insights-grid .insight-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+.transactions .insights-section .insights-grid .insight-card h3 {
+  font-size: 1.125rem;
+  color: #2D3748;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.transactions .insights-section .insights-grid .insight-card h3:before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.transactions .insights-section .insights-grid .insight-card.summary {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+.transactions .insights-section .insights-grid .insight-card.summary h3:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300875A'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z'/%3E%3C/svg%3E");
+}
+.transactions .insights-section .insights-grid .insight-card.summary .summary-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.transactions .insights-section .insights-grid .insight-card.summary .summary-stats .stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 0.375rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.transactions .insights-section .insights-grid .insight-card.summary .summary-stats .stat .label {
+  font-size: 0.875rem;
+  color: #4A5568;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.transactions .insights-section .insights-grid .insight-card.summary .summary-stats .stat .value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.transactions .insights-section .insights-grid .insight-card.summary .summary-stats .stat .value.positive {
+  color: #00875A;
+}
+.transactions .insights-section .insights-grid .insight-card.summary .summary-stats .stat .value.positive:before {
+  content: "+";
+}
+.transactions .insights-section .insights-grid .insight-card.summary .summary-stats .stat .value.negative {
+  color: #E53E3E;
+}
+.transactions .insights-section .insights-grid .insight-card.categories h3:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300875A'%3E%3Cpath d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z'/%3E%3C/svg%3E");
+}
+.transactions .insights-section .insights-grid .insight-card.categories .category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.transactions .insights-section .insights-grid .insight-card.categories .category-list .category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #F7FAFC;
+  border-radius: 0.375rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+.transactions .insights-section .insights-grid .insight-card.categories .category-list .category-item:hover {
+  transform: translateX(4px);
+}
+.transactions .insights-section .insights-grid .insight-card.categories .category-list .category-item .category-name {
+  font-weight: 500;
+  color: #2D3748;
+}
+.transactions .insights-section .insights-grid .insight-card.categories .category-list .category-item .category-amount {
+  font-weight: 600;
+  color: #2D3748;
+  font-variant-numeric: tabular-nums;
+}
+.transactions .insights-section .insights-grid .insight-card.unusual h3:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E53935'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v-2h-2v2zm0-4h2V7h-2v6z'/%3E%3C/svg%3E");
+}
+.transactions .insights-section .insights-grid .insight-card.unusual .unusual-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.transactions .insights-section .insights-grid .insight-card.unusual .unusual-list .unusual-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1rem;
+  background: rgba(229, 57, 53, 0.05);
+  border-radius: 0.375rem;
+  border: 1px solid rgba(229, 57, 53, 0.1);
+  transition: all 0.2s ease;
+}
+.transactions .insights-section .insights-grid .insight-card.unusual .unusual-list .unusual-item:hover {
+  background: rgba(229, 57, 53, 0.08);
+}
+.transactions .insights-section .insights-grid .insight-card.unusual .unusual-list .unusual-item .unusual-description {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.transactions .insights-section .insights-grid .insight-card.unusual .unusual-list .unusual-item .unusual-description span {
+  font-weight: 500;
+  color: #2D3748;
+}
+.transactions .insights-section .insights-grid .insight-card.unusual .unusual-list .unusual-item .unusual-description .unusual-date {
+  font-size: 0.875rem;
+  color: #4A5568;
+}
+.transactions .insights-section .insights-grid .insight-card.unusual .unusual-list .unusual-item .unusual-amount {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.transactions .insights-section .insights-grid .insight-card.unusual .unusual-list .unusual-item .unusual-amount.positive {
+  color: #00875A;
+}
+.transactions .insights-section .insights-grid .insight-card.unusual .unusual-list .unusual-item .unusual-amount.positive:before {
+  content: "+";
+}
+.transactions .insights-section .insights-grid .insight-card.unusual .unusual-list .unusual-item .unusual-amount.negative {
+  color: #E53E3E;
+}/*# sourceMappingURL=Transactions.css.map */
