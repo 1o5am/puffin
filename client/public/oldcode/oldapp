@@ -1,0 +1,103 @@
+// import { useState, useEffect } from 'react';
+// import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+// import Dashboard from './pages/Dashboard/Dashboard.jsx';
+// import Transactions from './pages/Transactions/Transactions.jsx';
+// import Budget from './pages/Budget/Budget.jsx';
+// // import Insights from './pages/Insights/Insights.jsx';
+// import Goals from './pages/Goals/Goals.jsx';
+// import Login from './pages/Login/Login.jsx';
+// import Register from './pages/Register/Register.jsx';
+// import Navbar from './components/Navbar/Navbar.jsx';
+// import Sidebar from './components/Sidebar/Sidebar.jsx';
+// import './App.scss';
+
+// function App() {
+//   const [isAuthenticated, setIsAuthenticated] = useState(false);
+//   const [user, setUser] = useState(null);
+//   const [isLoading, setIsLoading] = useState(true);
+
+//   useEffect(() => {
+//     const checkAuth = async () => {
+//       try {
+//         const response = await fetch('/api/auth/check', {
+//           credentials: 'include'
+//         });
+        
+//         if (response.ok) {
+//           const data = await response.json();
+//           setUser(data.user);
+//           setIsAuthenticated(true);
+//         }
+//       } catch (error) {
+//         console.error('Authentication check failed:', error);
+//       } finally {
+//         setIsLoading(false);
+//       }
+//     };
+
+//     checkAuth();
+//   }, []);
+
+//   const handleLogout = async () => {
+//     try {
+//       await fetch('/api/auth/logout', {
+//         method: 'POST',
+//         credentials: 'include'
+//       });
+//       setIsAuthenticated(false);
+//       setUser(null);
+//     } catch (error) {
+//       console.error('Logout failed:', error);
+//     }
+//   };
+
+//   if (isLoading) {
+//     return <div className="loading-screen">Loading...</div>;
+//   }
+
+//   return (
+//     <Router>
+//       <div className="app">
+//         {isAuthenticated ? (
+//           <>
+//             <Sidebar />
+//             <div className="main-content">
+//               <Navbar user={user} onLogout={handleLogout} />
+//               <Routes>
+//                 <Route path="/" element={<Dashboard />} />
+//                 <Route path="/transactions" element={<Transactions />} />
+//                 <Route path="/budget" element={<Budget />} />
+//                 {/* <Route path="/insights" element={<Insights />} /> */}
+//                 <Route path="/goals" element={<Goals />} />
+//                 <Route path="*" element={<Navigate to="/" replace />} />
+//               </Routes>
+//             </div>
+//           </>
+//         ) : (
+//           <Routes>
+//             <Route path="/login" element={<Login setAuth={setIsAuthenticated} setUser={setUser} />} />
+//             <Route path="/register" element={<Register setAuth={setIsAuthenticated} setUser={setUser} />} />
+//             <Route path="*" element={<Navigate to="/login" replace />} />
+//           </Routes>
+//         )}
+//       </div>
+//     </Router>
+//   );
+// }
+
+// export default App;
+
+// import { BrowserRouter as Router } from 'react-router-dom';
+// import './App.scss';
+
+// function App() {
+//   return (
+//     <Router>
+//       <div className="app">
+//         <h1>Hello World</h1>
+//       </div>
+//     </Router>
+//   );
+// }
+
+// export default App;

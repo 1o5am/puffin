@@ -1,0 +1,501 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.transactions {
+  padding: $spacing-xl;
+
+  .transactions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-xl;
+
+    h1 {
+      font-size: $text-4xl;
+      font-weight: 600;
+      color: $text-primary;
+    }
+
+    .add-transaction {
+      padding: $spacing-sm $spacing-lg;
+      background: $color-primary;
+      color: white;
+      border: none;
+      border-radius: $radius-md;
+      cursor: pointer;
+      font-size: $text-base;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: scale-color($color-primary, $lightness: -5%);
+      }
+    }
+  }
+
+  .transactions-content {
+    background: white;
+    border-radius: $radius-lg;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+    .transactions-filters {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: $spacing-lg;
+      border-bottom: 1px solid $border-light;
+
+      .search-container {
+        flex: 1;
+        max-width: 500px;
+
+        .search-form {
+          display: flex;
+          gap: $spacing-sm;
+
+          input {
+            flex: 1;
+            padding: $spacing-sm $spacing-md;
+            border: 1px solid $border-light;
+            border-radius: $radius-md;
+            font-size: $text-base;
+
+            &:focus {
+              outline: none;
+              border-color: $color-primary;
+            }
+          }
+
+          button {
+            padding: $spacing-sm $spacing-lg;
+            background: $color-primary;
+            color: white;
+            border: none;
+            border-radius: $radius-md;
+            cursor: pointer;
+
+            &:hover {
+              background: scale-color($color-primary, $lightness: -5%);
+            }
+          }
+        }
+      }
+
+      .filter-buttons {
+        display: flex;
+        gap: $spacing-sm;
+
+        button {
+          padding: $spacing-sm $spacing-md;
+          border: 1px solid $border-light;
+          border-radius: $radius-md;
+          background: white;
+          color: $text-secondary;
+          cursor: pointer;
+
+          &:hover {
+            border-color: $color-primary;
+            color: $color-primary;
+          }
+
+          &.active {
+            background: $color-primary;
+            color: white;
+            border-color: $color-primary;
+          }
+        }
+      }
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th {
+        padding: $spacing-md;
+        text-align: left;
+        font-size: $text-sm;
+        color: $text-secondary;
+        border-bottom: 1px solid $border-light;
+      }
+
+      td {
+        padding: $spacing-md;
+        border-bottom: 1px solid $border-light;
+
+        &.amount {
+          font-weight: 500;
+
+          &.positive {
+            color: $color-success;
+          }
+
+          &.negative {
+            color: $color-danger;
+          }
+        }
+
+        .category-tag {
+          display: inline-block;
+          padding: $spacing-xs $spacing-sm;
+          background: $bg-light;
+          border-radius: $radius-xl;
+          font-size: $text-xs;
+          color: $text-secondary;
+        }
+      }
+
+      tr:hover {
+        background: $bg-light;
+      }
+    }
+
+    .transactions-pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: $spacing-lg;
+      gap: $spacing-sm;
+
+      button {
+        padding: $spacing-xs $spacing-sm;
+        border: 1px solid $border-light;
+        border-radius: $radius-md;
+        background: white;
+        color: $text-secondary;
+        cursor: pointer;
+
+        &:hover:not(:disabled) {
+          border-color: $color-primary;
+          color: $color-primary;
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+
+        &.active {
+          background: $color-primary;
+          color: white;
+          border-color: $color-primary;
+        }
+      }
+    }
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    .modal {
+      background: white;
+      border-radius: $radius-lg;
+      padding: $spacing-xl;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      h2 {
+        font-size: $text-2xl;
+        color: $text-primary;
+        margin-bottom: $spacing-lg;
+      }
+
+      .form-group {
+        margin-bottom: $spacing-md;
+
+        label {
+          display: block;
+          font-size: $text-sm;
+          color: $text-secondary;
+          margin-bottom: $spacing-xs;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+          width: 100%;
+          padding: $spacing-sm;
+          border: 1px solid $border-light;
+          border-radius: $radius-md;
+          font-size: $text-base;
+
+          &:focus {
+            outline: none;
+            border-color: $color-primary;
+          }
+
+          &::placeholder {
+            color: $text-muted;
+          }
+        }
+
+        .radio-group {
+          display: flex;
+          gap: $spacing-md;
+
+          label {
+            display: flex;
+            align-items: center;
+            gap: $spacing-xs;
+            cursor: pointer;
+
+            input[type="radio"] {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: $spacing-sm;
+        margin-top: $spacing-lg;
+
+        button {
+          padding: $spacing-sm $spacing-lg;
+          border-radius: $radius-md;
+          font-size: $text-sm;
+          cursor: pointer;
+          transition: all 0.2s ease;
+
+          &[type="button"] {
+            background: white;
+            border: 1px solid $border-light;
+            color: $text-secondary;
+
+            &:hover {
+              border-color: $text-primary;
+              color: $text-primary;
+            }
+          }
+
+          &[type="submit"] {
+            background: $color-primary;
+            border: none;
+            color: white;
+
+            &:hover {
+              background: scale-color($color-primary, $lightness: -5%);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .insights-section {
+    margin: $spacing-xl 0;
+    
+    h2 {
+      font-size: $text-2xl;
+      color: $text-primary;
+      margin-bottom: $spacing-xl;
+      font-weight: $font-semibold;
+      position: relative;
+      display: inline-block;
+      
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 40px;
+        height: 4px;
+        background: $color-primary;
+        border-radius: $radius-sm;
+      }
+    }
+
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: $spacing-xl;
+      
+      .insight-card {
+        background: white;
+        border-radius: $radius-lg;
+        padding: $spacing-xl;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+        }
+        
+        h3 {
+          font-size: $text-lg;
+          color: $text-primary;
+          margin-bottom: $spacing-lg;
+          font-weight: $font-semibold;
+          display: flex;
+          align-items: center;
+          gap: $spacing-sm;
+
+          &:before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background-size: contain;
+            background-repeat: no-repeat;
+          }
+        }
+
+        &.summary {
+          background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+          
+          h3:before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300875A'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z'/%3E%3C/svg%3E");
+          }
+
+          .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: $spacing-lg;
+
+            .stat {
+              display: flex;
+              flex-direction: column;
+              gap: $spacing-xs;
+              padding: $spacing-md;
+              background: rgba(255, 255, 255, 0.7);
+              border-radius: $radius-md;
+              border: 1px solid rgba(0, 0, 0, 0.05);
+
+              .label {
+                font-size: $text-sm;
+                color: $text-secondary;
+                font-weight: $font-medium;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+              }
+
+              .value {
+                font-size: $text-xl;
+                font-weight: $font-bold;
+                letter-spacing: -0.5px;
+
+                &.positive { 
+                  color: $color-primary;
+                  &:before {
+                    content: '+';
+                  }
+                }
+                &.negative { 
+                  color: $color-error;
+                }
+              }
+            }
+          }
+        }
+
+        &.categories {
+          h3:before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300875A'%3E%3Cpath d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z'/%3E%3C/svg%3E");
+          }
+
+          .category-list {
+            display: flex;
+            flex-direction: column;
+            gap: $spacing-md;
+
+            .category-item {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: $spacing-md;
+              background: $background-light;
+              border-radius: $radius-md;
+              border: 1px solid rgba(0, 0, 0, 0.05);
+              transition: transform 0.2s ease;
+
+              &:hover {
+                transform: translateX(4px);
+              }
+
+              .category-name {
+                font-weight: $font-medium;
+                color: $text-primary;
+              }
+
+              .category-amount {
+                font-weight: $font-semibold;
+                color: $text-primary;
+                font-variant-numeric: tabular-nums;
+              }
+            }
+          }
+        }
+
+        &.unusual {
+          h3:before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E53935'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v-2h-2v2zm0-4h2V7h-2v6z'/%3E%3C/svg%3E");
+          }
+
+          .unusual-list {
+            display: flex;
+            flex-direction: column;
+            gap: $spacing-md;
+
+            .unusual-item {
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-start;
+              padding: $spacing-md;
+              background: rgba(229, 57, 53, 0.05);
+              border-radius: $radius-md;
+              border: 1px solid rgba(229, 57, 53, 0.1);
+              transition: all 0.2s ease;
+
+              &:hover {
+                background: rgba(229, 57, 53, 0.08);
+              }
+
+              .unusual-description {
+                display: flex;
+                flex-direction: column;
+                gap: $spacing-xs;
+
+                span {
+                  font-weight: $font-medium;
+                  color: $text-primary;
+                }
+
+                .unusual-date {
+                  font-size: $text-sm;
+                  color: $text-secondary;
+                }
+              }
+
+              .unusual-amount {
+                font-weight: $font-bold;
+                font-variant-numeric: tabular-nums;
+
+                &.positive { 
+                  color: $color-primary;
+                  &:before {
+                    content: '+';
+                  }
+                }
+                &.negative { 
+                  color: $color-error;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
