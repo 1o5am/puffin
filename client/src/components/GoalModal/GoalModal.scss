@@ -1,0 +1,145 @@
+@import '../../styles/variables.scss';
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-xl;
+
+    h2 {
+      margin: 0;
+      font-size: $text-2xl;
+      color: $text-primary;
+    }
+
+    .close-button {
+      background: none;
+      border: none;
+      font-size: $text-xl;
+      cursor: pointer;
+      color: $text-secondary;
+      padding: $spacing-xs;
+      line-height: 1;
+
+      &:hover {
+        color: $text-primary;
+      }
+    }
+  }
+
+  form {
+    .form-group {
+      margin-bottom: $spacing-lg;
+
+      label {
+        display: block;
+        margin-bottom: $spacing-sm;
+        color: $text-primary;
+        font-weight: $font-medium;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: $spacing-sm;
+        border: 1px solid $border-light;
+        border-radius: $radius-md;
+        font-size: $text-base;
+        background-color: white;
+
+        &:focus {
+          outline: none;
+          border-color: $color-primary;
+          box-shadow: 0 0 0 2px rgba($color-primary, 0.1);
+        }
+
+        &.error {
+          border-color: $color-error;
+          background-color: rgba($color-error, 0.02);
+        }
+
+        &::placeholder {
+          color: rgba($text-secondary, 0.5);
+        }
+      }
+
+      select {
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right $spacing-sm center;
+        background-size: $text-base;
+        padding-right: $spacing-xl;
+      }
+
+      .error-message {
+        color: $color-error;
+        font-size: $text-sm;
+        margin-top: $spacing-xs;
+        display: block;
+      }
+    }
+  }
+
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: $spacing-sm;
+    margin-top: $spacing-xl;
+
+    button {
+      padding: $spacing-sm $spacing-lg;
+      border-radius: $radius-md;
+      font-size: $text-base;
+      font-weight: $font-medium;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &.cancel-button {
+        background: none;
+        border: 1px solid $border-light;
+        color: $text-secondary;
+
+        &:hover {
+          background: $bg-light;
+          border-color: darken($border-light, 10%);
+        }
+      }
+
+      &.save-button {
+        background: $color-primary;
+        border: none;
+        color: white;
+
+        &:hover {
+          background: darken($color-primary, 5%);
+        }
+
+        &:active {
+          transform: translateY(1px);
+        }
+      }
+    }
+  }
+}

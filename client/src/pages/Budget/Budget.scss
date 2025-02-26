@@ -1,0 +1,105 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.budget {
+  padding: $spacing-xl;
+
+  .budget-header {
+    @include flex(row, space-between, center);
+    margin-bottom: $spacing-xl;
+
+    h1 {
+      font-size: $text-4xl;
+      color: $text-primary;
+    }
+
+    .add-budget-btn {
+      @include button-primary;
+    }
+  }
+
+  .budget-summary {
+    @include grid(repeat(3, 1fr), $spacing-lg);
+    margin-bottom: $spacing-xl;
+
+    .summary-card {
+      @include card;
+      text-align: center;
+
+      h3 {
+        font-size: $text-base;
+        color: $text-secondary;
+        margin-bottom: $spacing-sm;
+      }
+
+      p {
+        font-size: $text-2xl;
+        font-weight: 600;
+        margin: 0;
+
+        &.budgeted {
+          color: $color-primary;
+        }
+
+        &.spent {
+          color: $color-danger;
+        }
+
+        &.remaining {
+          color: $color-info;
+        }
+      }
+    }
+  }
+
+  .budget-grid {
+    @include grid(repeat(auto-fit, minmax(300px, 1fr)), $spacing-lg);
+
+    .budget-card {
+      @include card;
+
+      h3 {
+        font-size: $text-xl;
+        color: $text-primary;
+        margin-bottom: $spacing-md;
+      }
+
+      .budget-details {
+        margin-bottom: $spacing-md;
+
+        .budget-amount, .budget-spent, .budget-remaining {
+          @include flex(row, space-between, center);
+          margin-bottom: $spacing-sm;
+          font-size: $text-sm;
+          color: $text-secondary;
+        }
+      }
+
+      .progress-bar {
+        @include progress-bar;
+        margin-bottom: $spacing-sm;
+      }
+
+      .transaction-count {
+        font-size: $text-xs;
+        color: $text-muted;
+      }
+    }
+  }
+}
+
+// @media (max-width: 768px) {
+//   .budget {
+//     padding: $spacing-lg;
+
+//     .budget-header {
+//       @include flex(column, flex-start, flex-start);
+//       gap: $spacing-md;
+//       align-items: flex-start;
+//     }
+
+//     .budget-summary {
+//       @include grid(1fr, $spacing-lg);
+//     }
+//   }
+// }
