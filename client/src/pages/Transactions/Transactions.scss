@@ -5,42 +5,23 @@
   padding: $spacing-xl;
 
   .transactions-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(row, space-between, center);
     margin-bottom: $spacing-xl;
 
     h1 {
-      font-size: $text-4xl;
-      font-weight: 600;
-      color: $text-primary;
+      @include heading($text-4xl);
     }
 
     .add-transaction {
-      padding: $spacing-sm $spacing-lg;
-      background: $color-primary;
-      color: white;
-      border: none;
-      border-radius: $radius-md;
-      cursor: pointer;
-      font-size: $text-base;
-      transition: all 0.2s ease;
-
-      &:hover {
-        background: scale-color($color-primary, $lightness: -5%);
-      }
+      @include button-primary;
     }
   }
 
   .transactions-content {
-    background: white;
-    border-radius: $radius-lg;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    @include card;
 
     .transactions-filters {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @include flex(row, space-between, center);
       padding: $spacing-lg;
       border-bottom: 1px solid $border-light;
 
@@ -49,7 +30,7 @@
         max-width: 500px;
 
         .search-form {
-          display: flex;
+          @include flex(row, flex-start, center);
           gap: $spacing-sm;
 
           input {
@@ -66,31 +47,20 @@
           }
 
           button {
-            padding: $spacing-sm $spacing-lg;
-            background: $color-primary;
-            color: white;
-            border: none;
-            border-radius: $radius-md;
-            cursor: pointer;
-
-            &:hover {
-              background: scale-color($color-primary, $lightness: -5%);
-            }
+            @include button-primary;
           }
         }
       }
 
       .filter-buttons {
-        display: flex;
+        @include flex(row);
         gap: $spacing-sm;
 
         button {
-          padding: $spacing-sm $spacing-md;
+          @include button-base;
           border: 1px solid $border-light;
-          border-radius: $radius-md;
           background: white;
           color: $text-secondary;
-          cursor: pointer;
 
           &:hover {
             border-color: $color-primary;
@@ -108,61 +78,110 @@
 
     table {
       width: 100%;
-      border-collapse: collapse;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: $spacing-md 0;
 
-      th {
-        padding: $spacing-md;
-        text-align: left;
-        font-size: $text-sm;
-        color: $text-secondary;
-        border-bottom: 1px solid $border-light;
-      }
-
-      td {
-        padding: $spacing-md;
-        border-bottom: 1px solid $border-light;
-
-        &.amount {
-          font-weight: 500;
-
-          &.positive {
-            color: $color-success;
-          }
-
-          &.negative {
-            color: $color-danger;
-          }
-        }
-
-        .category-tag {
-          display: inline-block;
-          padding: $spacing-xs $spacing-sm;
-          background: $bg-light;
-          border-radius: $radius-xl;
-          font-size: $text-xs;
+      thead {
+        background-color: $bg-light;
+        
+        th {
+          padding: $spacing-md $spacing-lg;
+          text-align: left;
+          font-size: $text-sm;
+          font-weight: $font-semibold;
           color: $text-secondary;
+          border-bottom: 2px solid $border-light;
+          white-space: nowrap;
+
+          &:first-child {
+            border-top-left-radius: $radius-md;
+          }
+
+          &:last-child {
+            border-top-right-radius: $radius-md;
+          }
         }
       }
 
-      tr:hover {
-        background: $bg-light;
+      tbody {
+        tr {
+          border-bottom: 1px solid $border-light;
+          transition: background-color 0.2s ease;
+
+          &:hover {
+            background-color: rgba($color-primary, 0.05);
+          }
+
+          &:last-child td {
+            border-bottom: none;
+          }
+        }
+
+        td {
+          padding: $spacing-md $spacing-lg;
+          font-size: $text-base;
+          color: $text-primary;
+          border-bottom: 1px solid $border-light;
+          vertical-align: middle;
+
+          &.amount {
+            font-weight: $font-medium;
+            text-align: right;
+            font-family: monospace;
+
+            &.positive {
+              color: $color-success;
+              &:before { content: '+'; }
+            }
+
+            &.negative {
+              color: $color-danger;
+            }
+          }
+
+          .category-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: $spacing-xs $spacing-sm;
+            background: $bg-light;
+            border-radius: $radius-xl;
+            font-size: $text-xs;
+            color: $text-secondary;
+            font-weight: $font-medium;
+            
+            &:before {
+              content: '';
+              display: inline-block;
+              width: 8px;
+              height: 8px;
+              border-radius: 50%;
+              margin-right: $spacing-xs;
+              background-color: $color-primary;
+            }
+          }
+
+          &.status {
+            .completed {
+              color: $color-success;
+              font-size: $text-sm;
+            }
+          }
+        }
       }
     }
 
     .transactions-pagination {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex(row, center, center);
       padding: $spacing-lg;
       gap: $spacing-sm;
 
       button {
-        padding: $spacing-xs $spacing-sm;
+        @include button-base;
         border: 1px solid $border-light;
-        border-radius: $radius-md;
         background: white;
         color: $text-secondary;
-        cursor: pointer;
+        padding: $spacing-xs $spacing-sm;
 
         &:hover:not(:disabled) {
           border-color: $color-primary;
@@ -297,38 +316,19 @@
     margin: $spacing-xl 0;
     
     h2 {
-      font-size: $text-2xl;
-      color: $text-primary;
-      margin-bottom: $spacing-xl;
-      font-weight: $font-semibold;
-      position: relative;
-      display: inline-block;
-      
-      &:after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        left: 0;
-        width: 40px;
-        height: 4px;
-        background: $color-primary;
-        border-radius: $radius-sm;
-      }
+      @include heading($text-2xl);
     }
 
     .insights-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: $spacing-xl;
+      @include grid(repeat(auto-fit, minmax(320px, 1fr)), $spacing-xl);
       
       .insight-card {
-        background: white;
-        border-radius: $radius-lg;
+        @include card;
         padding: $spacing-xl;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         transition: transform 0.2s ease, box-shadow 0.2s ease;
         border: 1px solid rgba(0, 0, 0, 0.05);
-        
+
         &:hover {
           transform: translateY(-2px);
           box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
@@ -493,6 +493,36 @@
                 }
               }
             }
+          }
+        }
+      }
+    }
+  }
+
+  @include mobile {
+    padding: $spacing-lg;
+
+    .transactions-filters {
+      flex-direction: column;
+      gap: $spacing-md;
+
+      .search-container {
+        width: 100%;
+        max-width: none;
+      }
+    }
+
+    table {
+      thead {
+        th {
+          padding: $spacing-sm $spacing-md;
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            padding: $spacing-sm $spacing-md;
           }
         }
       }

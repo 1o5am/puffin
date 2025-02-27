@@ -120,42 +120,42 @@ const Transactions = () => {
 
       <Insights page="transactions" data={insightsData} />
 
-      <div className="transactions-filters">
-        <div className="search-bar">
-          <form onSubmit={handleSearchSubmit}>
-            <input
-              type="text"
-              placeholder="Search transactions..."
-              value={searchQuery}
-              onChange={handleSearchInput}
-            />
-            <button type="submit">Search</button>
-          </form>
+      <div className="transactions-content">
+        <div className="transactions-filters">
+          <div className="search-container">
+            <form className="search-form" onSubmit={handleSearchSubmit}>
+              <input
+                type="text"
+                placeholder="Search transactions..."
+                value={searchQuery}
+                onChange={handleSearchInput}
+              />
+              <button type="submit">Search</button>
+            </form>
+          </div>
+
+          <div className="filter-buttons">
+            <button
+              className={activeFilter === 'All' ? 'active' : ''}
+              onClick={() => setActiveFilter('All')}
+            >
+              All
+            </button>
+            <button
+              className={activeFilter === 'Income' ? 'active' : ''}
+              onClick={() => setActiveFilter('Income')}
+            >
+              Income
+            </button>
+            <button
+              className={activeFilter === 'Expenses' ? 'active' : ''}
+              onClick={() => setActiveFilter('Expenses')}
+            >
+              Expenses
+            </button>
+          </div>
         </div>
 
-        <div className="filter-buttons">
-          <button
-            className={activeFilter === 'All' ? 'active' : ''}
-            onClick={() => setActiveFilter('All')}
-          >
-            All
-          </button>
-          <button
-            className={activeFilter === 'Income' ? 'active' : ''}
-            onClick={() => setActiveFilter('Income')}
-          >
-            Income
-          </button>
-          <button
-            className={activeFilter === 'Expenses' ? 'active' : ''}
-            onClick={() => setActiveFilter('Expenses')}
-          >
-            Expenses
-          </button>
-        </div>
-      </div>
-
-      <div className="transactions-list">
         <table>
           <thead>
             <tr>
@@ -171,31 +171,39 @@ const Transactions = () => {
               <tr key={transaction.id}>
                 <td>{new Date(transaction.date).toLocaleDateString()}</td>
                 <td>{transaction.description}</td>
-                <td>{transaction.category}</td>
-                <td className={transaction.amount < 0 ? 'negative' : 'positive'}>
+                <td>
+                  <span className="category-tag">
+                    {transaction.category}
+                  </span>
+                </td>
+                <td className={`amount ${transaction.amount < 0 ? 'negative' : 'positive'}`}>
                   {formatCurrency(transaction.amount)}
                 </td>
-                <td>{transaction.status}</td>
+                <td className="status">
+                  <span className={transaction.status}>
+                    {transaction.status}
+                  </span>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
 
-      <div className="pagination">
-        <button
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage(prev => prev - 1)}
-        >
-          Previous
-        </button>
-        <span>Page {currentPage}</span>
-        <button
-          disabled={startIndex + ITEMS_PER_PAGE >= filteredTransactions.length}
-          onClick={() => setCurrentPage(prev => prev + 1)}
-        >
-          Next
-        </button>
+        <div className="transactions-pagination">
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(prev => prev - 1)}
+          >
+            Previous
+          </button>
+          <span>Page {currentPage}</span>
+          <button
+            disabled={startIndex + ITEMS_PER_PAGE >= filteredTransactions.length}
+            onClick={() => setCurrentPage(prev => prev + 1)}
+          >
+            Next
+          </button>
+        </div>
       </div>
 
       {showAddModal && (
